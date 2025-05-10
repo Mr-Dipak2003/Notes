@@ -1,0 +1,27 @@
+h1{
+color:blue;
+}
+
+#lg{
+    height: 400px;
+    width:400px;
+    border:3px solid black;
+    margin: auto;
+    background-image: linear-gradient(to top left, red,yellow);
+}
+
+#rg{
+    height: 400px;
+    width:400px;
+    border:3px solid black;
+    margin: auto;
+    background-image:repeating-radial-gradient(circle, purple,yellow 30%);
+}
+
+#cg{
+    height: 400px;
+    width:400px;
+    border:3px solid black;
+    margin: auto;
+    background-image:conic-gradient(red,yellow,purple,blue,tan,green,pink,orange);
+}

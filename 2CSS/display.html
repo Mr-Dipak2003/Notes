@@ -1,0 +1,64 @@
+<!-- CSS DISPLAY PROPERTY
+
+The Display property in CSS defines how the components(div, hyperlink, heading, etc) are going to be placed on the web page. 
+As the name suggests,this property is used to define the display of the different parts of a web page.
+
+Syntax:
+dispaly:block;
+        inline;
+        Inline-block;
+        none:
+
+2
+There are two types:- 
+1. Block Element
+2. Inline Element
+
+1. Block Element:-
+   It occupies full width of its of its parents.
+   Always start from new line
+   allow hight and width
+   eg:-<h1....h6>,<p>,<address>,<ol>,<ul>,<div>
+    
+2. Inline Element:- 
+It ocuppied the width if required
+It never start from new line
+It does't allow height and width
+eg:-<a>,<b>,<mark>,<lable>,<input>
+
+3. Inline-block Element:- 
+This features uses the both properties mentioned above, block and inline. 
+So, this property aligns the div inline but the difference is it can edit
+the height and the width of block. Basically, this will align the div both in block and inline fashion. -->
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Display</title>
+
+        <style>
+                h1{
+                        color:red;
+                       
+                       
+                }
+                a{
+                        text-decoration: none;
+                       display: none;
+                }
+                span{
+                        color:greenyellow;
+                        background-color: black;
+                        display: block;
+                }
+        </style>
+</head>
+<body>
+        <h1>Display</h1>
+
+        <a href="">Amazon</a>
+        <span>hello</span>
+</body>
+</html>

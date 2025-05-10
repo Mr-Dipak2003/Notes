@@ -1,0 +1,105 @@
+<!-- CSS gradients offer a powerful way to create visually appealing web elements by smoothly transitioning between two or more colors.
+
+The Gradients can be categorized into 3 types:
+
+1. Linear Gradients
+2. Radial Gradients
+3. Conic Gradients
+
+1.LINEAR-GRADIENTS:-
+
+Syntax:
+background-image: linear-gradient(color, color);
+
+a. direction:-(direction,color,color)
+             top;
+             bottom;
+             to top right;
+             to top left;
+             to bottom right;
+             to bottom left; 
+
+b. Percentage:(color%, color%);
+
+c.Angle(deg , color, color);
+
+d.rgba mode(color,rgba(0,0,0,0.2));
+
+repeat:- background:repeating-linear-gradient(color, color);
+
+2.Radial Gradients:-
+
+Syntax:
+background-image: radial-gradient(color, color);
+
+a. Ratio:(color%, color%);
+
+b.Shape:(circle, color%, color%);
+
+c.Side(side ,color,color);
+       closest-side;
+       closest-corner;
+       forthest-side;
+       forthest-corner
+
+d.repeat:- background:repeating-radial-gradient(color, color);
+
+3.Conic Gradients:
+
+Syntax:
+background-image: conic-gradient(color, color);
+
+a.repeat:- background:repeating-conic-gradient(color, color); -->
+ 
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>gradients</title>
+
+       <style>
+              h1{
+                     text-align: center;
+                     color:yellowgreen;
+                     background-color: black;
+              }
+
+              #id1{
+                     height: 300px;
+                     width: 300px;
+                     border: 3px solid black;
+                     margin: auto;
+                     background-image: repeating-linear-gradient(  red, yellow 40%);
+              }
+
+              #id2{
+                     height: 300px;
+                     width: 300px;
+                     border: 3px solid black;
+                     margin: auto;
+                     border-radius: 50%;
+                     background-image: repeating-radial-gradient(circle, orange,purple 20%);
+              }
+
+              #id3{
+                     height: 300px;
+                     width: 300px;
+                     border: 3px solid black;
+                     margin: auto;
+                     border-radius: 50%;
+                     background-image: repeating-conic-gradient(red,yellow,orange,blue,pink,purple,cyan,crimson,greenyellow 10%);
+              }
+       </style>
+ </head>
+ <body>
+       <h1>Gradients Property</h1>
+
+       <div id="id1"></div><br><br>
+       <div id="id2"></div><br><br>
+       <div id="id3"></div>
+
+       
+ </body>
+ </html>

@@ -1,0 +1,51 @@
+<!-- The transform property in CSS is used to change the coordinate space of the visual formatting model.
+This is used to add effects like skew, rotate, translate,scale etc on elements.
+
+The properties are:
+1. translate(x, y): It specifies a translation across the X and Y axes.
+2. rotate(angle): It specifies the angle of rotation.
+3. skew(angle, angle)(X,Y): It specifies the skew transformation along the X and Y axes corresponding to the skew angles.
+4. scale(x, y): It specifies the scale transformation along the X and Y axes. -->
+  
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transform</title>
+
+    <style>
+         h1{
+          text-align: center;
+          color:blue;
+         }
+
+         div{
+          height: 250px;
+          width: 250px;
+          background-color: red;
+          border:2px solid black;
+          margin:120px auto;
+          transition-property:all;
+          transition-duration:3s;
+          transition-delay: 1s;
+          transition-timing-function: steps(16);
+         
+         }
+
+         div:hover{
+         width:300px;
+         height:300px ;
+         background-color: green;
+         border-radius: 50%;
+         transform: rotate(360deg);
+         }
+    </style>
+ </head>
+ <body>
+      <h1>Transform Property</h1> 
+
+      <div></div>
+         
+ </body>
+ </html>

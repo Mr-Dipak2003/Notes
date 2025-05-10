@@ -1,0 +1,59 @@
+<!-- BORDER PROPERTY
+
+CSS borders are essential elements in websites, representing the edges of various components and elements.
+CSS Borders refer to the lines that surround elements, defining their edges.
+
+Syntax:
+border: size type color;
+types: Solid: Produces a continuous line.
+       Dotted: Creates a series of dots.
+       Dashed: Forms a dashed line.
+       Double: Renders two parallel lines.
+       Groove and Ridge: Create 3D grooved and ridged effects.
+       Inset and Outset: Add 3D inset and outset borders.
+       None: Removes the border.
+       Hidden: Hides the border. 
+
+Dimension: height 
+           width
+
+border-radius:- 
+
+outline:-outline is a line drawn outside the element's border.
+( size type color;,none) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Border</title>
+	<style>
+		h1{
+			text-align: center;
+			color:greenyellow;
+			background-color: black;
+		}
+
+		div{
+			height: 300px;
+			width: 300px;
+			margin: 100px auto;
+			background-color: pink;
+			 border: 15px solid yellow; 
+			/* border-top:15px dotted red;
+			border-right:15px solid purple;
+			border-bottom:15px double green;
+			border-left:15px dashed blue; */
+             border-radius:50% ;
+			 outline: 20px double red;
+
+		}
+	</style>
+</head>
+<body>
+	<h1>Border Property</h1>
+
+	<div></div>
+</body>
+</html>

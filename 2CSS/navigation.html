@@ -1,0 +1,51 @@
+  <!-- <!- Website Navigation, as name suggests, is a way to showing importance and relevance of pages, content, 
+  and information on website.
+
+Use of Navigation bar:
+A navigation bar needs standard HTML as a base.
+
+In our examples we will build the navigation bar from a standard HTML list.
+
+A navigation bar is basically a list of links, so using the <ul> and <li> elements makes perfect sense:
+
+    It contain two bar :
+    1. verticle navigation bar
+    2. horizontal navigation bar  
+
+
+ DROP-DOWN 
+   Dropdowns are one of the most important parts of an interactive website. 
+CSS is used to design the drop-down menus. A drop-down is a bunch of lists under an unordered list 
+i.e. <ul> as it is popularly known in HTML world. Nested list (<li>) tags under the <ul> tag 
+used to create drop-down structure.To bring out the effects use CSS for the components present in the structure.   --> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation and Dropdown</title>
+  <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+
+  <nav>
+       <h1>Project</h1>
+
+       <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="">AboutUs</a></li> 
+        <li><a href="">Service</a>
+             <ul>
+                 <li><a href="">Design</a></li> 
+                 <li><a href="">Marketing</a></li> 
+                 <li><a href="">Web-Devlopment</a></li> 
+             </ul>
+        </li>
+         <li><a href="">Contact</a></li>
+       </ul>
+  </nav>
+  
+</body>
+</html>

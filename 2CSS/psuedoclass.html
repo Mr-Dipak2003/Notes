@@ -1,0 +1,106 @@
+ <!--PSUEDO CLASSES
+
+Pseudo-classes in CSS are used to define the special state of an element. 
+ It is widely use in a website, as an user comes to know wether the link was visited or not.
+ It is use for user interaction with the website. this UI help in saving the time is most efficient.
+
+ class are as:
+ Active: A state that happen when the user click on the link. 
+ Visited: Select visited link 
+ link: Select unvisited link 
+ :hover:- A state that happen when the user place thir mouse pointer on the top of the link. 
+
+ Other html psuedo class are:-
+element:after;
+element:before;
+element:first-letter;
+element:hover;    -->
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Psuedo Selector/Classes</title>
+
+	<style>
+		  h1{
+			text-align: center;
+			color:red;
+
+		  }
+
+		  div{
+			height: 300px;
+			width: 300px;
+			border:3px solid black;
+			background-color: bisque;
+			padding:20px ;
+			box-sizing: border-box;
+			margin:100px auto;
+		  }
+
+		  a:link{
+			text-decoration: none;
+		  }
+
+		 a:active{
+			color:red;
+		 }
+
+		 a:visited{
+			color:yellowgreen;
+		 }
+
+		 a:hover{
+			background-color: black;
+			color:orange;
+			font-size: 30px;
+			font-family: cursive;
+		 }
+
+		 button{
+			background-color: crimson;
+			color:yellow;
+			padding: 15px;
+		 }
+
+		 button:before{
+			content:url(arrow.png)
+		 }
+
+		 button::after{
+			content:url(arrow.png)
+		 }
+
+		 button:hover{
+			background-color: red;
+			color:white;
+			
+		 }
+
+		 h1::first-letter{
+			color:aqua;
+			font-size: 60px;
+		 }
+	</style>
+</head>
+<body>
+
+	<h1>Psuedo  Selector</h1>
+	<div>
+
+		<h2>Psuedo Classes</h2>
+
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, et?</p>
+	
+		<a href="https://www.amazon.in/">Amazon</a><br><br>
+	
+		<button>
+			<img src="bg6.jpg" alt="" height="30px" width="30px">
+		</button>
+
+	</div>
+	
+</body>
+</html>

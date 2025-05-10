@@ -1,0 +1,67 @@
+<!-- The position property in CSS tells about the method of positioning for an element or an HTML entity 
+and the positioning of an element can be done using the top, right, bottom, and left properties.
+
+There are five different types of position properties available in CSS:
+
+Fixed:-	An element with position: fixed property remains in the same position relative to the viewport even when the page is scrolled.
+Static:-Default positioning method. Elements with position: static are positioned according to the normal flow of the document.
+Relative:-Elements with position: relative are positioned relative to their normal position in the document flow. Other elements will not fill the gap left by this element when adjusted.
+Absolute:-Positioned concerning its nearest non-static ancestor. Elements with position: absolute are taken out of the normal document flow.
+Sticky:-Combines features of position: relative and position: fixed. The element is treated as position: relative until it reaches a specified threshold, then it becomes position: fixed. -->
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Css Position</title>
+
+	<style>
+		  h1{
+			text-align: center;
+			color:red;
+			text-decoration: underline;
+			text-transform: uppercase;
+
+		  }
+
+		  #id1{
+			height: 400px;
+			width: 400px;
+			border:3px solid black;
+			background-color: coral;
+			position: relative;
+			left: 50px;
+			top:50px;
+			
+		  }
+
+		  #id2{
+			height: 150px;
+			width: 150px;
+			border:3px solid black;
+			background-color: blue;
+			position: absolute;
+			left: 150px;
+			top:150px;
+			
+			
+		  }
+	</style>
+</head>
+<body>
+	  <h1>Position Property</h1>
+
+      <div id="id1">
+
+		  <div id="id2">Hello</div>
+
+	  </div>
+
+
+
+
+
+</body>
+</html>

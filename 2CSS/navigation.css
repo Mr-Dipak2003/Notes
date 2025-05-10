@@ -1,0 +1,76 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsIz4qZKTOplGKCIt860B8HP3mTBMZGACNFg&s);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+nav{
+    height: 70px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    line-height: 70px;
+}
+
+nav h1{
+    font-size: 40px;
+    padding: 0px 120px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color:white;
+    float: left;
+}
+
+nav ul{
+    float: right;
+}
+
+nav ul li{
+    float: left;
+    list-style-type: none;
+    position: relative;
+    padding: 0px 8px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: white;
+    font-size:20px ;
+    padding: 0px 16px;
+    display: block;
+  
+}
+nav ul li a:hover{
+    background-color: aqua;
+}
+
+nav ul li ul{
+    background-color: rgba(255, 255, 255, 0.3);
+    display: none;
+    position: absolute; 
+}
+
+nav ul li:hover ul{
+    display: block;
+}
+nav ul li ul li{
+    line-height: 1;
+    width: 140px; 
+    padding: 6px;
+    border-radius: 5px;
+}
+nav ul li ul li a{
+
+    padding: 8px;
+}
+nav ul li ul li a:hover{
+    background-color: aquamarine;
+}
+
+

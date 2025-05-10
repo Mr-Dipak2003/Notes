@@ -1,0 +1,59 @@
+<!---
+ The List in CSS specifies the listing of the contents or items in a particular manner.
+ List property are as:-
+ List-style type:disc;
+                circle ;
+				square;
+				none;
+				number;  ----1,2,3,4
+				upper-alpha;    A,B,C,D
+				lower-alpha;     a,b,c,d
+				upper-roman;     I,II,III,IV
+				lower-roman;      i,ii,iii,iv
+
+List-style-position:inside;
+                    outside;
+
+List-style-image:url();  -->
+ 
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>List</title>
+
+	      <style>
+			     h1{
+					text-align: center;
+					color: greenyellow;
+					background-color: black;
+				 }
+
+				 ul{
+					height: 350px;
+					width: 300px;
+					border: 3px solid black;
+					background-color: bisque;
+					padding: 40px;
+					box-sizing: border-box;
+					list-style-type:square;
+					list-style-position: inside;
+					list-style-image: url(flowergun.png);
+				 }
+		  </style>
+</head>
+<body>
+	<h1>List Property</h1>
+
+	<ul>
+		<li>Black</li>
+		<li>White</li>
+		<li>Pink</li>
+		<li>Orange</li>
+		<li>Red</li>
+	</ul>
+</body>
+</html>

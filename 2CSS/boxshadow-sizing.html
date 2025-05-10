@@ -1,0 +1,48 @@
+<!-- Box-sizing Property:
+The box-sizing property in CSS defines how the user should calculate the total
+width and height of an element i.e padding and borders, are to be included or not.
+
+Syntax:
+box-sizing:border-box;
+
+
+Box-shadow Property:-
+CSS box shadow property is used to give a shadow-like effect to the frames of an element. 
+The multiple effects can be applied to the element’s frame which is separated by the comma. 
+The box-shadow can be described using X and Y offsets relative to the element, blur and spread radius, and color. 
+The default value is none. 
+
+Syntax:
+box-shadow: h-offset v-offset blur spread color;
+Where,
+h-offset:- It is required to set the position of the shadow horizontally.
+v-offset:- It is required to set the position of shadow value vertically. 
+blur:- It is an optional attribute, the work of this attribute is to blur the shadow of the box.
+color:-It is an optional attribute and is used to set the color of the shadow.
+spread:-It is used to set the size of the shadow. The size of the spread depends on the value of the spread. -->
+ 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOX MODEL</title>
+  <style>
+    div{
+      height: 200px;
+      width: 200px;
+      border: 18px solid red;
+      background-color: bisque;
+      margin: auto;
+      border-radius: 50%;
+      outline: 20px ridge blue;
+     
+    }
+  </style>
+ </head>
+ <body>
+  <h1>Box Model</h1>
+
+  <div></div>
+ </body>
+ </html>

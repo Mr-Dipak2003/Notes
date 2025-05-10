@@ -1,0 +1,135 @@
+<!-- CSS Animations change the appearance and behavior of various elements in web pages.
+They are defined using the @keyframes rule, which specifies the animation properties of 
+the element and the specific time intervals at which those properties should change.
+
+Animation property:
+animation-name:abc;
+animation-duration:3s;
+animation-delat:
+animation-iteration-count:5s or infinite;
+animation-direction:altarnet:
+                    normal;
+                    reverse;
+                    alternate-reverse;
+
+animation-timing-function:linear;
+                          ease;
+                          ease-in;
+                          ease-out;
+                          ease-in-out;
+                          steps();
+
+@keyframes abc{
+    from{
+          property:value;
+          property:value
+        }
+    to{
+        property:value;
+        property:value
+    }   
+}
+OR
+@keyframes animation-name{
+    0%{ property:value; property:value }
+    20%{ property:value; property:value }
+    40%{ property:value; property:value } 
+    60%{ property:value; property:value }
+    80%{ property:value; property:value }
+    100%{ property:value; property:value }
+} -->
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+
+    <style>
+
+        body{
+            background-color: black;
+        }
+         h1{
+            text-align: center;
+            color:red;
+            font-size: 40px;
+         }
+
+         #id1{
+            height: 300px;
+            width: 300px;
+            border:2px solid black;
+            background-color: pink;
+            margin: 100px auto;
+            animation-name: demo;
+            animation-duration: 5s;
+            animation-delay: 3s;
+            animation-direction: alternate-reverse; 
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in;
+         }
+
+         /* @keyframes demo{
+
+            from{
+                background-color: blueviolet;
+                border-radius: 0%;
+                transform: rotate(0deg);
+            }
+
+            to{
+                background-color: rgb(18, 202, 46);
+                border-radius: 50%;
+                transform: rotate(360deg);
+            }
+         } */
+
+         @keyframes demo{
+
+            0%{
+                background-color:red;
+                border-radius: 0%;
+                transform: rotate(0deg);
+            }
+
+            20%{
+                background-color:yellow;
+                border-radius: 10%;
+                transform: rotate(45deg);
+            }
+
+            40%{
+                background-color: blue;
+                border-radius: 20%;
+                transform: rotate(90deg);
+            }
+
+            60%{
+                background-color:orange;
+                border-radius: 30%;
+                transform: rotate(180deg);
+            }
+
+            80%{
+                background-color: rgb(18, 202, 46);
+                border-radius: 40%;
+                transform: rotate(270deg);
+            }
+
+            100%{
+                background-color:cyan;
+                border-radius: 50%;
+                transform: rotate(360deg);
+            }
+         }
+    </style>
+</head>
+<body>
+      <h1>Animation</h1>
+
+      <div id="id1"></div>
+</body>
+</html>
