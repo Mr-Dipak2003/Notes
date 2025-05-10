@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Array Destructuring
+       
+        
+        console.log('Array Destructuring');
+        
+        const fruits = ["Apple", "Banana", "Mango","Orange",["red","black","blue"]];
+        const [value1, value2, value3, value4,[value5,value6,value7]] = fruits;
+
+        console.log(value1); 
+        console.log(value2); 
+        console.log(value3); 
+        console.log(value4); 
+        console.log(value6); 
+        console.log('__________________________________________________________');
+
+        // Object Destructuring
+        console.log('Object Destructuring');
+        
+        const person = {
+            name: "Dipak",
+            age: 25,
+            address: {
+                city: "Kolhapur",
+                zip: "10001",
+                country: "India"
+            }
+        };
+
+        
+        const { name, age,lastNmae="shelke", address: { city, zip, country } } = person;
+
+        console.log(name);   
+        console.log(age);   
+        console.log(lastNmae);   
+        console.log(city);   
+        console.log(zip);    
+        console.log(country);
+
+    </script>
+</body>
+</html>

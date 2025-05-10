@@ -1,0 +1,19 @@
+
+
+
+
+
+
+
+*Method Overriding 
+=>If we have same method name as well as parameters in parent class and child class 
+  is called as a Method Overriding.
+=>method overriding is a run time polymorphism.
+=>Method overriding always occurusing inheritance.
+ 
+*rules
+1) method name must be a same 
+2) parameters must be a same 
+3) return type also same
+4) class must be a different
+

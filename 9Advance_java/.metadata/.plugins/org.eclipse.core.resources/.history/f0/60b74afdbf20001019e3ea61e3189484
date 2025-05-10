@@ -1,0 +1,32 @@
+package Inheritance;
+
+import java.util.Scanner;
+
+class Digit{
+	int num;
+	void setValue(int a){
+		num=a;
+	}
+	void getSqure() {
+		System.out.println("Squre is:- "+num*num);
+	}
+}
+class exicute extends Digit{
+	void getQube() {
+		System.out.println("Qube is:- "+num*num*num);
+	}
+}
+
+public class Singleinheritance {
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter a number");
+		int  num=sc.nextInt();
+		Digit dg = new Calcube();
+		cal.setValue(num);
+		cal.getSqure();
+
+	}
+
+}

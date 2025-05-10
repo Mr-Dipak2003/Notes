@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function dpk(){
+            console.log("this is inside of function");
+        }
+        dpk();
+
+        function cal(num1,num2){
+            console.log(num1*num2);
+        }
+        cal(2,3);//<-----------Function Expression
+
+        function iife()
+        {
+            let a=2;
+            let b=3;
+            console.log(a/b);
+        }
+        iife();//<-------(iife) immdealety involk function expression
+
+        
+
+        //=========Arrow Function=====ES6============//
+        let ar1=[1,2,3,4,5,6,7,8,9]
+        
+        // Using map to append 'element' to each item
+        let maap = ar1.map((parametr) => parametr + ' element');
+        console.log(maap);                          // Output: ['1 element', '2 element', '3 element', ..., '9 element']
+
+        // Using reduce to calculate the sum of all elements
+        let redu = ar1.reduce((prev, curr) => prev + curr);
+        console.log(redu);                              // Output: 45
+
+        // Using filter to create a new array with elements greater than 5
+        let filt = ar1.filter((element) => element > 5);
+        console.log(filt);                              // Output: [6, 7, 8, 9]
+        
+        
+    </script>
+   
+</body>
+</html>

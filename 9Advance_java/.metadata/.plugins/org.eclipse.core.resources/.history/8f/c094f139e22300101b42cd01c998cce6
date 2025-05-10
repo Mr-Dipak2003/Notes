@@ -1,0 +1,7 @@
+ 
+ -In a default constructor we have default constructor in Parent class as well and same in child class
+  then when  creating object of child class class first constructor of parent class then class child
+  constructor.
+ 
+ 
+ ====>Chaining constructor<=====

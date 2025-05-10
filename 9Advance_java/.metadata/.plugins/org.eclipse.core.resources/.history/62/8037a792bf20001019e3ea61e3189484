@@ -1,0 +1,19 @@
+package Inheritance;
+
+import java.util.Scanner;
+
+import OOP.Calcube;
+
+public class Singleinheritance {
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter a number");
+		int  num=sc.nextInt();
+		Digit dg = new Calcube();
+		cal.getData(num);
+		cal.showData();
+
+	}
+
+}

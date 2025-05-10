@@ -1,0 +1,21 @@
+package Inheritance_Inside_Constructor;
+
+class frut{
+	frut(){
+		System.out.println("This is constructor form parent class");
+	}
+}
+class mango extends frut{
+	mango(){
+		System.out.println("This is constructor form child class");
+	}
+}
+public class DefaultContructor {
+
+	public static void main(String[] args) {
+		mango mg= new mango();
+		
+		
+	}
+
+}

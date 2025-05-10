@@ -1,0 +1,25 @@
+package Inheritance_Inside_Constructor;
+
+class Exam{
+	Exam(int a,int b, int c, int d){
+		this(a,b,c);                          //this keyword upcoming next class chya constructor la value pass karto
+		System.out.println("Square is:"+d*d);
+		
+	}
+	Exam(int a, int b,int c){
+		this(c);
+		System.out.println("Sum is:"+ (b+c));
+	}
+	Exam(int c){
+		
+		System.out.println("Number i:"+ c);
+	}
+	
+}
+
+
+public class paraConstructors {
+	public static void main(String[]args) {
+		Exam e=new Exam(2,5,7,9);
+	}
+}

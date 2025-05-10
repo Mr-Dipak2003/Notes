@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="arr.sumOfArray"/>
+    <fullyQualifiedTypeName name="OOP.Squre"/>
+    <fullyQualifiedTypeName name="OOP.Calcube"/>
+    <fullyQualifiedTypeName name="OOP.contruct"/>
+    <fullyQualifiedTypeName name="OOP.paraContruct"/>
+    <fullyQualifiedTypeName name="OOP.fib"/>
+    <fullyQualifiedTypeName name="OOP.checkNumber"/>
+    <fullyQualifiedTypeName name="java.awt.dnd.peer.DragSourceContextPeer"/>
+    <fullyQualifiedTypeName name="Inheritance.Digit"/>
+    <fullyQualifiedTypeName name="Inheritance.fruts"/>
+    <fullyQualifiedTypeName name="Inheritance.stobery"/>
+    <fullyQualifiedTypeName name="Inheritance.apple"/>
+    <fullyQualifiedTypeName name="Inheritance_Inside_Constructor.mango"/>
+    <fullyQualifiedTypeName name="Inheritance_Inside_Constructor.cube"/>
+</qualifiedTypeNameHistroy>

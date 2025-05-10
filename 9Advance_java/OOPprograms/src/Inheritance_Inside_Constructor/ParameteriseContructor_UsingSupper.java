@@ -1,0 +1,24 @@
+package Inheritance_Inside_Constructor;
+
+class Square{
+	Square(int no){
+		System.out.println("Squre is: "+no*no);
+	}
+	
+}
+class cube extends Square{
+	cube(int num){
+		super(num);
+		System.out.println("Cube is: "+num*num*num);
+		
+	}
+	
+}
+public class ParameteriseContructor_UsingSupper {
+
+	public static void main(String[] args) {
+		cube cb= new cube(4);
+
+	}
+
+}

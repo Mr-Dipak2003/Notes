@@ -1,0 +1,10 @@
+package Inheritance;
+
+public class Hierarchicalinheritance {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

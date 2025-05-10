@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARRAY</title>
+</head>
+<body>
+    <h1>Js Array</h1>
+
+    <script>
+        // let arr=['madhura',55,true,'pooja','dipali',undefined,12,100,'dipak',null,23];
+        //  let arr1=[1,4,6,2,8,9];
+        // let arr2=['abc','xyz','sdd'];
+        // let arr3=[true,false];
+        // let arr4=[undefined];
+        // let arr5=[null];
+
+        // console.log(arr);
+        // console.log(arr1);
+        // console.log(arr2);
+        // console.log(arr3);
+        // console.log(arr4);
+        // console.log(arr5);   //literal way of array
+
+        let arr=new Array('madhura','dipali','dipak','pooja');
+        console.log(arr);
+
+        console.log(arr[2]);
+        console.log(arr[1]);
+        console.log(arr[2]);
+        console.log(arr[3]);   //new constructor
+
+        let fruits = ["apple", "banana", "orange", "grape"];
+
+        // 1. Length
+        let length = fruits.length;
+        console.log("Length:", length); // Output: Length: 4
+
+        // 2. Sort
+        fruits.sort();
+        console.log("Sorted:", fruits); // Output: Sorted: ["apple", "banana", "grape", "orange"]
+
+        // 3. Reverse
+        fruits.reverse();
+        console.log("Reversed:", fruits); // Output: Reversed: ["orange", "grape", "banana", "apple"]
+
+        // 4. Pop
+        let lastFruit = fruits.pop();
+        console.log("After pop:", fruits); // Output: After pop: ["orange", "grape", "banana"]
+        console.log("Popped fruit:", lastFruit); // Output: Popped fruit: apple
+
+        // 5. Push
+        fruits.push("kiwi");
+        console.log("After push:", fruits); // Output: After push: ["orange", "grape", "banana", "kiwi"]
+
+        // 6. Shift
+        let firstFruit = fruits.shift();
+        console.log("After shift:", fruits); // Output: After shift: ["grape", "banana", "kiwi"]
+        console.log("Shifted fruit:", firstFruit); // Output: Shifted fruit: orange
+
+        // 7. Unshift
+        fruits.unshift("mango");
+        console.log("After unshift:", fruits); // Output: After unshift: ["mango", "grape", "banana", "kiwi"]
+
+        // 8. Concat
+        let moreFruits = ["pear", "peach"];
+        let allFruits = fruits.concat(moreFruits);
+        console.log("After concat:", allFruits); // Output: After concat: ["mango", "grape", "banana", "kiwi", "pear", "peach"]
+
+        // 9. Join
+        let fruitString = allFruits.join(", ");
+        console.log("Joined string:", fruitString); // Output: Joined string: mango, grape, banana, kiwi, pear, peach
+
+        // 10. Slice
+        let slicedFruits = allFruits.slice(1, 4);
+        console.log("Sliced fruits:", slicedFruits); // Output: Sliced fruits: ["grape", "banana", "kiwi"]
+
+        // 11. Splice
+        let removedFruits = allFruits.splice(2, 2, "cherry", "plum");
+        console.log("After splice:", allFruits); // Output: After splice: ["mango", "grape", "cherry", "plum", "pear", "peach"]
+        console.log("Removed fruits:", removedFruits); // Output: Removed fruits: ["banana", "kiwi"]
+        
+    </script>
+</body>
+</html>

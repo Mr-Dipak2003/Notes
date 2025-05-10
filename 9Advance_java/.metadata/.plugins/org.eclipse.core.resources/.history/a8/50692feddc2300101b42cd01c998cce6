@@ -1,0 +1,43 @@
+package Inheritance;
+
+class fruts{
+	void show() {
+		System.out.println("Frutes have many colors");
+	}
+}
+
+class mango extends fruts{
+	void showcolor() {
+		System.out.println("Mango is a yellow");
+	}
+	
+}
+class apple extends fruts{
+void showcolor() {
+	System.out.println("Apple is a red");
+	}
+	
+}
+class stobery extends fruts{
+	
+void showcolor() {
+	System.out.println("stobery is a dark-red");
+		
+	}
+}
+
+public class Hierarchicalinheritance {
+
+	public static void main(String[] args) {
+		
+		stobery sb= new stobery();
+		sb.show();//<------this method from parent class
+		sb.showcolor();
+		
+		apple ap = new apple();
+		ap.showcolor();
+		
+
+	}
+
+}

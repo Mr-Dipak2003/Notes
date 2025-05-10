@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>number method</h1>
+    <script>
+        let a=200.2123;
+        let b=Number.parseInt(a);//<--------Show only int value
+        console.log(b);
+
+        let c=Number.parseFloat(a)//<--------Show only float value
+        console.log(c);
+
+        let d=Number.isFinite(a)//<-it is chacke only given value is number or not number they have return only true and false
+        console.log(d);
+
+        let e=Number.isInteger(a)//<-it is chacke only given value is int or nor-int they have return only true and false
+        console.log(e);
+
+        let f=a.toFixed(2)//<------use how many values getting after decimal
+        console.log(f);
+
+        let g=a.toPrecision(4);//<------use how many values getting diget to all
+        console.log(g);
+        
+               
+    </script>
+</body>
+</html>

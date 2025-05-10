@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Methods Example</title>
+</head>
+<body>
+    <h2>Function Methods: bind, call, and apply</h2>
+    <button id="bindButton">Bind Example</button>
+    <button id="callButton">Call Example</button>
+    <button id="applyButton">Apply Example</button>
+    <p id="output"></p>
+
+    <script>
+        const person = {
+            firstName: 'Dipak',
+            lastName: 'Shelke',
+            fullName: function() {
+                return this.firstName + ' ' + this.lastName;
+            }
+        };
+
+        const person2 = {
+            firstName: 'Dipali',
+            lastName: 'Tathe'
+        };
+
+        // Bind example
+        const bindExample = function() {
+            const boundFullName = person.fullName.bind(person2);
+            console.log('Bind Method: '+boundFullName());
+            
+        };
+
+        // Call example
+        const callExample = function() {
+            const callfullName = person.fullName.call(person2);
+            console.log('Call Method: '+callfullName);
+            
+        };
+
+        // Apply example
+        const applyExample = function() {
+            const applyfullName = person.fullName.apply(person2);
+            console.log('Apply Method: '+applyfullName);
+            
+        };
+        bindExample();
+        callExample();
+        applyExample();
+    </script>
+</body>
+</html>

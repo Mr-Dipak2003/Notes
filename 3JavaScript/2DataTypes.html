@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Data Types</title>
+</head>
+<body>
+    <h1>JavaScript Data Types</h1>
+    
+    <h2>Primitive Data Types</h2>
+    <script>
+        // Primitive Data Types
+        const num = 42;               // Number
+        const str = "Hello, World!";  // String
+        const bool = true;            // Boolean
+        const undef = undefined;      // Undefined
+        const nul = null;             // Null
+        const sym = Symbol('sym');    // Symbol
+        const bigInt = BigInt(9007199254740991); // BigInt
+
+        document.write('Number: '+num+'<br/><br>');
+        document.write('String: '+str+'<br/><br>');
+        document.write('Boolean: '+bool+'<br/><br>');
+        document.write('Undefined: '+undef+'<br/><br>');
+        document.write('Null: '+nul+'<br/><br>');
+        document.write('Symbol: '+sym.toString()+'<br/><br>');
+        document.write('BigInt: '+bigInt+'<br/><br>');
+    </script>
+    
+    <h2>Non-Primitive Data Types</h2>
+    <script>
+        // Non-Primitive Data Types
+        const arr = [1, 2, 3, 4, 5];                       // Array
+
+        const obj = { 
+                        name: "Dipak",
+                        city: "Kolhapur",
+                        age: 25 
+                    };                                  // Object
+
+         function func(){
+                            return "I am a function";
+                        };                                  // Function
+
+        document.write(arr+'<br/><br>');
+        document.write('Object: Name -'+obj.name+ ', Age -' +obj.age+'<br/><br>');
+        document.write('Function: '+func());
+
+     
+    </script>
+    <h2>Type of Method</h2>
+    <script>
+           document.writeln(typeof(str));
+    </script>
+</body>
+</html>

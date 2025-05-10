@@ -1,0 +1,24 @@
+package OOP;
+
+import java.util.Scanner;
+
+public class functionCalling {
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter a number");
+		int  num=sc.nextInt();
+		Calcube cal = new Calcube();
+		cal.getData(num);
+		cal.showData();
+
+	}
+
+}
+class Calcube{
+	int no;
+	void Calcube(int x) {
+		no=x;
+	}
+	
+}

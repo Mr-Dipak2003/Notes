@@ -1,0 +1,20 @@
+ 
+ =>Default constructor
+	 -In a default constructor we have default constructor in Parent class as well and same in child class
+	  then when  creating object of child class class first constructor of parent class then class child
+	  constructor.
+ 
+ 
+=>Parameterized constructor
+-In a Parameterized constructor we want to use this or super key work to pass the values for parent constructor
+ and they any one key work use inside the child class.
+-We can not use this and super key word at same time, you can use only one key word
+ ====>Chaining constructor<=====
+ 
+ supper -> pass the parameter to parent class constructor.
+ 
+ this->this keyword is use to pass parameter to same name constructor. 
+ 	  Basically we have multiple constructor same name then we want to use this keywork
+ 	  inside the contructor to pass the value to next constructor.
+ 	  syntax
+ 	    

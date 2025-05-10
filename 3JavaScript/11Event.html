@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Events Example</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+        }
+        #log {
+            margin-top: 20px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="box">Hover or Click Me!</div>
+    <input type="text" id="textInput" placeholder="Type something..." />
+    <button id="submitButton">Submit</button>
+    <p id="output"></p>
+    <div id="log"></div>
+
+    <script>
+        const box = document.getElementById('box');
+        const input = document.getElementById('textInput');
+        const output = document.getElementById('output');
+        const submitButton = document.getElementById('submitButton');
+        const log = document.getElementById('log');
+
+        // Mouse Events
+        box.addEventListener('click', function() {
+            log.textContent += 'Box clicked! ';
+        });
+
+        box.addEventListener('mouseover', function() {
+            box.style.backgroundColor = 'lightgreen';
+        });
+
+        box.addEventListener('mouseout', function() {
+            box.style.backgroundColor = 'lightblue';
+        });
+
+        // Keyboard Events
+        input.addEventListener('keyup', function(event) {
+            output.textContent = 'You typed: ' + input.value;
+        });
+
+        // Form Events
+        submitButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            alert('Form submitted with: ' + input.value);
+            input.value = ''; // Clear the input field
+            output.textContent = ''; // Clear the output
+        });
+        
+        input.addEventListener('focus', function() {
+            input.style.backgroundColor = 'lightGreen';
+        });
+
+        // Window Events
+        window.addEventListener('resize', function() {
+            log.textContent += 'Window resized! ';
+        });
+
+        window.addEventListener('load', function() {
+            log.textContent += 'Page loaded! ';
+        });
+    </script>
+</body>
+</html>

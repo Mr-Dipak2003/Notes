@@ -1,0 +1,15 @@
+package polymorphism;
+
+class circle {
+	void aria (int r) {
+		final float PI=3.14f;
+	}
+}
+public class methodOverriding {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

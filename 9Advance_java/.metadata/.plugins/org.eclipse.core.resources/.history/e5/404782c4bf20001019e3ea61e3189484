@@ -1,0 +1,24 @@
+package Inheritance;
+
+import java.util.Scanner;
+
+class Digit{
+	int num;
+	void setValue(int a){
+		num=a;
+	}
+}
+
+public class Singleinheritance {
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter a number");
+		int  num=sc.nextInt();
+		Digit dg = new Calcube();
+		cal.getData(num);
+		cal.showData();
+
+	}
+
+}

@@ -1,0 +1,23 @@
+package polymorphism;
+
+class vehicle {
+	
+	void move () {
+		
+		
+	}
+}
+
+class car extends vehicle{
+	void move() {
+		
+	}
+}
+public class OverRideEX {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

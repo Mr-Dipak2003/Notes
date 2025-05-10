@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        #id1{
+            background-color: aquamarine;
+            border: 1px blue solid;
+            width: 400px;
+            height: 400px;
+            padding: 50px;
+            box-sizing: border-box;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>JQuery Effect</h1>
+    <div id="id1">
+        <img src="https://i1.wp.com/www.sportsadda.com/static-assets/waf-images/f9/2d/43/1-1/vsaqyLKMLs.jpg?strip=all" alt="" height="200px" width="200px">
+
+        <h2>Effect</h2>
+
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, excepturi.</p>
+        
+    </div>
+    <button id="hide">Hide</button>
+    <button id="show">show</button>
+    <script>
+        $(document).ready(function(){
+            $('#hide').click(function(){
+                $('#id1').hide(function(){
+                    alert('Content is hide');
+                })
+            })
+            $('#show').click(function(){
+                $('#id1').show(function(){
+                    alert('Content is hide');
+                })
+            })
+        })
+        
+        </script>
+</body>
+</html>

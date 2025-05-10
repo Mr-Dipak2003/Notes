@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Operators in Javascript</h1>
+    <script>
+        let a =4;
+        let b =1;
+        let res;
+        console.log("This is an Arithmetic Operators"+Arithmeticoperators());
+        
+        console.log("This is an Assignment Operators");
+        
+        
+        function Arithmeticoperators(){
+            res=a+b;
+            console.log("This is a sum of "+a+" and "+b+" = " +res);
+            res=a-b;
+            console.log("This is a Subtraction of "+a+" and "+b+" = " +res);
+            res=a*b;
+            console.log("This is a Multiplication of "+a+" and "+b+" = " +res);
+            res=a/b;
+            console.log("This is a Division of "+a+" and "+b+" = " +res);
+            res=a%b;
+            console.log("This is a Modulus of "+a+" and "+b+" = " +res);
+            a++;
+            console.log("This is a Increment of "+a+"  = " +a);
+            res=a**b;
+            console.log("This is a Exponentiation  of "+a+" and "+b+" = " +res);
+        }
+        function LogicalOperators(a, b) {
+            console.log("a = " + a + ", b = " + b);
+            console.log("Logical AND (a && b) = " + (a && b));
+            console.log("Logical OR (a || b) = " + (a || b));
+            console.log("Logical NOT (!a) = " + (!a));
+        }
+        function ComparisonOperators(a, b) {
+            console.log("a = " + a + ", b = " + b);
+            console.log("Equal (a == b) = " + (a == b));
+            console.log("Strict Equal (a === b) = " + (a === b));
+            console.log("Not Equal (a != b) = " + (a != b));
+            console.log("Strict Not Equal (a !== b) = " + (a !== b));
+            console.log("Greater Than (a > b) = " + (a > b));
+            console.log("Less Than (a < b) = " + (a < b));
+            console.log("Greater Than or Equal (a >= b) = " + (a >= b));
+            console.log("Less Than or Equal (a <= b) = " + (a <= b));
+        }
+        
+        function AssignmentOperators(a) {
+            console.log("Initial value of a: " + a);
+            a += 5; // Add and assign
+            console.log("After a += 5: " + a);
+            a -= 2; // Subtract and assign
+            console.log("After a -= 2: " + a);
+            a *= 3; // Multiply and assign
+            console.log("After a *= 3: " + a);
+            a /= 4; // Divide and assign
+            console.log("After a /= 4: " + a);
+            a %= 2; // Modulus and assign
+            console.log("After a %= 2: " + a);
+        }
+    </script>
+</body>
+</html>

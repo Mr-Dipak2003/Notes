@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="id1">
+        <h1>Html Modification</h1>
+
+        <p>Lorem ipsum dolor sit          amet consectetur adipisicing elit. Natus?</p>
+
+        <p>Lorem ipsum dolor sit          amet
+             consectetur         , adipisicing 
+            elit. Aperiam, doloribus?</p>
+    </div>
+    <script>
+        let a=document.getElementById('id1').innerHTML;
+        console.log(a);
+
+        let b=document.getElementById('id1').innerText;
+        console.log(b);
+
+        let c=document.getElementById('id1').textContent;
+        console.log(c);
+        
+    </script>
+</body>
+</html>

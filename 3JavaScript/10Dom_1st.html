@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>DOM Practical</h1>
+    <p id="id1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus reiciendis doloribus esse sit quam omnis dicta rerum iste doloremque! Sunt reiciendis quas quo reprehenderit ipsum nesciunt incidunt impedit omnis aliquam.</p>
+    <p class="hello">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus reiciendis doloribus esse sit quam omnis dicta rerum iste doloremque! Sunt reiciendis quas quo reprehenderit ipsum nesciunt incidunt impedit omnis aliquam.</p>
+    <p class="hello">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus reiciendis doloribus esse sit quam omnis dicta rerum iste doloremque! Sunt reiciendis quas quo reprehenderit ipsum nesciunt incidunt impedit omnis aliquam.</p>
+    <p class="hello">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus reiciendis doloribus esse sit quam omnis dicta rerum iste doloremque! Sunt reiciendis quas quo reprehenderit ipsum nesciunt incidunt impedit omnis aliquam.</p>
+
+    <script>
+        let byid=document.getElementById('id1');
+        console.log(byid);
+
+        let bycls=document.getElementsByClassName('hello')
+        console.log(bycls);
+
+        let bytag=document.getElementsByTagName('p')
+        console.log(bytag);
+
+        let byqry=document.querySelector('.hello');
+        console.log(byqry);
+
+        let byqryAL=document.querySelectorAll('.hello');
+        console.log(byqryAL);
+              
+        
+        
+    </script>
+</body>
+</html>

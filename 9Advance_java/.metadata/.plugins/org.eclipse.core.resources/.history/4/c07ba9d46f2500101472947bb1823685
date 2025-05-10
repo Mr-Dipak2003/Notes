@@ -1,0 +1,25 @@
+package polymorphism;
+
+class circle {
+	void aria (int r) {
+		final float PI=3.14f;
+		int radius=r;
+		System.out.println("Aria of circle is: "+2*PI*radius);
+		
+	}
+}
+
+class squre extends circle{
+	void aria(int b) {
+		int side=b;
+		System.out.println("Aria of squre is: "+side*side);
+	}
+}
+public class methodOverriding {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

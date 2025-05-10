@@ -1,0 +1,9 @@
+package Inheritance_Inside_Constructor;
+
+public class DefaultContructor {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

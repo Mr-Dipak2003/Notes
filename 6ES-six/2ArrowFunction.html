@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Simple arrow function to add two numbers
+        const add = (a, b) => a + b;
+
+        // Arrow function with implicit return to multiply two numbers
+        const multiply = (a, b) => a * b;
+
+        // Arrow function with no parameters
+        const sayHello = () => console.log("Hello!");
+
+        // Arrow function with a single parameter
+        const square = x => x * x;
+
+        // Example of an arrow function using `this`
+        const person = {
+                        name: "Dipak",
+                        greet: function() {
+                            setTimeout(() => {
+                                console.log(`Hello, my name is ${this.name}`);
+                            }, 1000);
+                        }
+                    };
+
+        // Testing the functions
+        // console.log(add(5, 3));          // Output: 8
+        // console.log(multiply(4, 5));     // Output: 20
+        // sayHello();                      // Output: Hello!
+        // console.log(square(6));          // Output: 36
+
+       // const p = new 
+       person.greet();
+       
+                  // Starts the age increment after a second
+
+    </script>
+</body>
+</html>

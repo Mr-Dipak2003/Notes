@@ -1,0 +1,22 @@
+package Inheritance_Inside_Constructor;
+
+class Square{
+	Square(int no){
+		
+	}
+	
+}
+class cube extends Square{
+	cube(int num){
+		
+	}
+	
+}
+public class ParameteriseContructor_UsingSupper {
+
+	public static void main(String[] args) {
+		cube cb= new cube(20);
+
+	}
+
+}

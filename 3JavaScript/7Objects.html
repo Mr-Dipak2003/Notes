@@ -1,0 +1,43 @@
+an<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <H1>Objects in Javascript</H1>
+    <script>
+        let obj={
+                name:'Dipak',
+                age:22,
+                city:'kolhapur'
+            }
+            console.log(obj);
+            let obj1=Object.keys(obj);//--------keys method
+            console.log(obj1);
+
+            let obj2=Object.assign(obj);//-------assign method
+            obj2.name='Rohit';
+            obj2.city='Mumbai';//modify
+            obj2.company='TCS';// add new value
+            console.log(obj2);
+
+            let obj3=Object.freeze(obj);//------freeze method
+            obj3.name='kiran';//<-------do not modify
+            console.log(obj3);
+
+            let obj4=Object.seal(obj);//<------------seal method
+            obj4.name='yash';//<-------alow modify
+            obj4.company='TCS';//<-------do not add
+            console.log(obj4);
+            
+            console.log(obj);
+            let obj5=Object.values(obj);//--------values method
+            console.log(obj5);
+
+
+
+    </script>
+</body>
+</html>

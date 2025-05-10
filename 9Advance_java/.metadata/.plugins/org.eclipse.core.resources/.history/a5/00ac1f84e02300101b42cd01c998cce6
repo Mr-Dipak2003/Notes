@@ -1,0 +1,10 @@
+package Inheritance_Inside_Constructor;
+
+public class ParameteriseContructor_UsingSupper {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

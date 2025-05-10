@@ -1,0 +1,20 @@
+---------Defination--------------------------------------------------------------
+ => Inheritance means to transfer the properties of one class to another class
+ is called Inheritance.
+ ------------------------------------------------------------
+ use of inheritance
+ ->Reusability of code
+ ->Extensibility of code => is called re-use with new implementation 
+ 
+ if we wont to use inheritance in java we have to use extend keyword.
+ 
+ syntax -> childClassName extend parentClassName{ }
+ 
+ Types:-
+ 1.Single Inheritance ->only one parent class and only one his child class;
+ 	
+ 2.Multilevel Inheritance -> its form a chain of inheritance.
+ 3.Hierarchical Inheritance-> it have single parent class and multiple child classes;
+ 	-In Hierarchical Inheritance , a single parent class has multiple child classes that inherits form 
+ 	 it. each child class can heave its own class specific methods in addition to the inherited methods.
+ 4.Hybrid Inheritance 

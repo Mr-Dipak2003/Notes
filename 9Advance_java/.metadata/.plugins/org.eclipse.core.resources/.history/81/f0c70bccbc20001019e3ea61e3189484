@@ -1,0 +1,19 @@
+package Inheritance;
+
+/*
+ * Inheritance means to transfer the properties of one class to another class
+ * is called Inheritance.
+ * use of inheritance
+ * ->Reusability of code
+ * ->Extensibility of code
+ * 
+ * if we wont to use inheritance in java we have to use extend keyword.
+ * 
+ * syntax -> childClassName extend parentClassName{ }
+ * */
+public class inheritance {
+	public static void main(String[] args) {
+			
+		}
+
+}

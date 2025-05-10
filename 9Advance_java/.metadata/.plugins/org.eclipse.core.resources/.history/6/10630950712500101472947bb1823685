@@ -1,0 +1,27 @@
+package polymorphism;
+
+class vehicle {
+	
+	void move () {
+		System.out.println("This is a vehical class");
+	}
+}
+
+class car extends vehicle{
+	void move() {
+		System.out.println("cars moves on road");
+	}
+}
+class boat extends vehicle{
+void move() {
+		System.out.println("Boat Sails on water");
+	}
+}
+public class OverRideEX {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

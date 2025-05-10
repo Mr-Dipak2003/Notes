@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+</head>
+<body>
+    <h1>Test 1</h1>
+    
+    <h3>1. print a number 100 to 0</h3>
+    <h3>2. print a odd number less then 100</h3>
+    <h3>3. mearge this arrays [2,3,4,5,6],['abc','xyz',true],[false,undifind,23]</h3>
+    <h3>4. calculate the sum of numbers 1 to 25</h3>
+
+    <script>
+        function qustion1()
+        {
+             
+            for(let i=100;i>0;i--)
+            {
+                console.log(i);
+            }
+        }
+
+        function qustion2(){
+            for(let i=100;i>0;i--)
+        {
+           if(i%2==0)
+           {
+                console.log(i);
+                
+           }
+        }
+        }
+        function qustion3(){
+            let ar1=[2,3,4,5,6];
+            let ar2=['abc','xyz',true];
+            let ar3=[false,undefined,23];
+            let mrg=ar1.concat(ar2,ar3)
+            
+            console.log(mrg);
+            
+        }
+
+        function qustion4(){
+            let sum=0;
+            let i;
+            for(i=0;i<=25;i++)
+            {
+                if(i<=25){
+                    
+                    sum=sum+i;
+                }
+            }
+         return sum;   
+        }
+       // qustion1();
+      // qustion2();
+       //qustion3();
+      let res=qustion4();
+      console.log(res);
+      
+        
+    </script>
+</body>
+</html>

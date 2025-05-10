@@ -1,0 +1,17 @@
+package Inheritance;
+
+class fruts{
+	void show() {
+		System.out.println("Frutes have many colors");
+	}
+}
+
+
+public class Hierarchicalinheritance {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

@@ -1,0 +1,50 @@
+package Assignment;
+
+public class ADigitCount {
+	
+
+	
+		
+		    private int number;
+
+		    // Method to set the value
+		    public void setValue(int num) {
+		        this.number = num;
+		    }
+
+		    // Method to count and return the number of digits
+		    public int getCount() {
+		        int count = 0;
+		        int temp = Math.abs(number); // handle negative numbers
+
+		        if (temp == 0) {
+		            return 1;
+		        }
+
+		        while (temp > 0) {
+		            temp = temp / 10;
+		            count++;
+		        }
+
+		        return count;
+		    }
+
+		   
+		    public static void main(String[] args) {
+		        ADigitCount obj = new ADigitCount();
+		        obj.setValue(12345);
+
+		        int digits = obj.getCount();
+		        System.out.println("Number of digits: " + digits);
+		    }
+		}
+
+
+			// TODO Auto-generated method stub
+
+	
+		
+
+	
+
+

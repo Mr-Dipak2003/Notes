@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline Styles Example</title>
+</head>
+<body>
+    <h2 id="title">Hello, World!</h2>
+    <button onclick="changeStyle()">Single Property</button>
+    <button onclick="changeStyles()">Multipal Property</button>
+
+    <script>
+        function changeStyle() {
+            const title = document.getElementById('title');
+            title.style.color = 'blue';
+            
+        }
+        function changeStyles() {
+            const title = document.getElementById('title');
+            title.style.cssText = 'color: Pink; font-size: 28px; text-align: center; text-decoration: underline; text-transform:uppercase;';
+            
+        }
+    </script>
+</body>
+</html>
