@@ -1,0 +1,1211 @@
+ALTER proc [dbo].[SP_Org_AddEmployeeMaster]
+@EmployeeId int=null,
+@CollCenterId int=null,
+@DoctorId int=null,
+@InitialId int=null,
+@ModuleId int=null,
+@BranchId int=null,
+@DepartmentId nvarchar(50)=null,
+@DesignationId int=null,
+@UserName nvarchar(25)=null,
+@EmployeeCode nvarchar(25)=null,
+@FirstName nvarchar(25)=null,
+@MiddleName nvarchar(25)=null,
+@LastName nvarchar(25)=null,
+@Gender int=null,
+@Degree nvarchar(100)=null,
+@MobileNo nvarchar(25)=null,
+@EmailId nvarchar(60)=null,
+@DatOfBirth nvarchar(25)=null,
+@AnneversaryDate nvarchar(25)=null,
+@Address nvarchar(300)=null,
+@DesireLevel nvarchar(25)=null,
+@Category nvarchar(25)=null,
+@Employeephoto image=null,
+@EmpDigitalSign image=null,
+@ModifyReason varchar(300)=null,
+@IsDeleted bit=null,
+@Flag varchar(50)=null,
+@BitImgPhoto bit = null,
+@BitImgSign bit = null,
+@EmpSearchQuery nvarchar(max)=null,
+@sqlcreateUserQuery nvarchar(max)=null,
+@FlagStatus nvarchar(50)=null,
+@cDoctorId int =null,
+@FatherName nvarchar(300) =null,
+@Age nvarchar(50) =null,
+@BloodGroup nvarchar(50)= null,
+@Nationality nvarchar(50) =null,
+@State nvarchar(50) =null,
+@City nvarchar(50) =null,
+@Village nvarchar(50) =null,
+@MaritalStatus nvarchar(50)= null,
+@Passport nvarchar(50)= null,
+@Driving nvarchar(50)= null,
+@CorreAddress nvarchar(300)= null,
+@CorresMo nvarchar(50)= null,
+@DateOfJoining nvarchar(50)= null,
+@EmployeeType nvarchar(50) =null,
+@ShiftName nvarchar(50) =null,
+@DOJPF nvarchar(50) =null,
+@ESICAccNo nvarchar(50) =null,
+@PFAccNo nvarchar(50)= null,
+@BankName nvarchar(50) =null,
+@BankAccNo nvarchar(50)= null,
+@PANNo nvarchar(50)= null,
+@PolicyName nvarchar(50) =null,
+@FinPrintId nvarchar(50) =null,
+@WorkingStatus nvarchar(50) =null,
+@ReportingEmpName nvarchar(50)= null,
+@BankAccName nvarchar(50)= null,
+@AgeYMD nvarchar(50)= null,
+@EmpSalaryId nvarchar(50) =null,
+@EmpMachineId nvarchar(100)= null,
+@EmpSalary nvarchar(300)= null,
+@AadharCardNo nvarchar(20)=null,
+@OnlineStatus bit = null,
+@DocDetails nvarchar(max)=null,
+@EmpPhotos nvarchar(max)=null,
+@IsCheck int=null,
+--shobhit
+@Education nvarchar(500)=null,
+@UAN nvarchar(500)=null
+--shobhit
+
+
+ 
+as
+
+begin
+
+if @Flag='GenerateIdCard' -- (Flag) add by vishal
+begin
+	select
+	toe.EmployeeCode  as EmpIdForIdentity, 
+	initial.InitialName+' '+toe.FirstName+' '+toe.LastName as EmpNameForIdentity,
+	toe.EmpPhotos  as EmpPhotoForIdentity,
+	tods.DesignationName as DesignationForIdentity,
+	toe.DateOfJoining as DOJForIdentity,
+	forBlood.Name as BloodGroupForIdentity,
+	'Dr. ANSHUMAN SHARMA' as DrNameForIdentity,
+	'MEDICAL DIRECTOR' as DrDesignationForIdentity,
+	'AUTHORIZED SIGNATORY' as DrAuthorizedSignatureForIdentity,
+	  'Neuroscience Hospital
+     281,283 Sector-1, Mangal
+     Pandey Nagar,Meerut 250004
+     Ph:9927005678,9837021937' as HospitalAddressForIdentityBackSide,
+	 '9927005678' as EmergencyAddressForIdentityBackSide,
+	 'Note:- This Card Belongs To Our
+      Permanent Employee & If Found
+      Please Return To The Address' as NoteForIdentityBackSide,
+	  '~/Images/MimhansIcardLogo.jpeg' as imgLogoForIdentity,
+	  'MIMHANS Neuroscience Hospital Meerut' as AddressForIdentity,
+	  'Mimhans' as HospitalNameForIdentityBackSide
+	from tbl_Org_AddEmployeeMaster toe
+	inner join tbl_AllModuleChild toc on toc.ChildId = toe.Gender
+	left join tbl_AllModuleChild forBlood on forBlood.ChildId=toe.BloodGroup
+	inner join tbl_Org_InitialMaster toi on toi.InitialId = toe.InitialId
+	inner join tbl_Org_DepartmentMaster tod on tod.DepartmentId = toe.DepartmentId
+	inner join tbl_Org_DesignationMaster tods on tods.DesignationId = toe.DesignationId
+	inner join tbl_Org_InitialMaster initial on initial.InitialId=toe.InitialId
+	 
+	where toe.IsDeleted=0 and toe.EmployeeId= @EmployeeId
+end
+
+-------=====================bind Bank Nmae===========================
+if @Flag='BankName'
+begin
+select distinct BankId,BankName 
+from tbl_Payroll_BankBranchMaster
+
+
+
+end
+
+
+-------------------
+
+if @Flag='GetCountrtyId'
+begin
+select countryid from tbl_Org_StateMaster where StateId=(select StateId from tbl_Org_CityMaster where DefaultFlag='true')
+end
+
+if @flag='GetStateId'
+begin
+select StateId from tbl_Org_CityMaster where DefaultFlag='true'
+end
+
+if @Flag='GetCitysId'
+begin
+select CityId from tbl_Org_CityMaster where DefaultFlag='true'
+end
+
+------------==================================================
+
+if @Flag = 'SaveEmployee'
+begin
+declare @tmpCollCenterId int = null
+if @CollCenterId != 0
+begin
+ set @tmpCollCenterId =@CollCenterId
+end
+
+declare @tmpDoctorId int=null
+if @DoctorId !=0
+begin
+set @tmpDoctorId=@DoctorId
+end
+
+--select * from  tbl_Org_AddEmployeeMaster
+insert into tbl_Org_AddEmployeeMaster
+(
+InitialId,
+ModuleId,
+BranchId,
+DepartmentId,
+DesignationId,
+EmployeeCode,
+FirstName,
+MiddleName,
+LastName,
+Gender,
+MobileNo,
+EmailId,
+DatOfBirth,
+AnneversaryDate,
+Address,
+DesireLevel,
+Category,
+Employeephoto,
+EmpDigitalSign,
+CreatedBy,
+CreatedDate,
+IsDeleted,
+CollCenterId,
+DoctorId,
+OrgFatherName,
+OrgAge ,
+AgeYMD,
+BloodGroup ,
+Nationality ,
+State ,
+City ,
+Village ,
+MaritalStatus ,
+Passport ,
+Driving ,
+CorreAddress ,
+CorresMo ,
+DateOfJoining ,
+EmployeeType ,
+ShiftName,
+DOJPF,
+ESICAccNo,
+PFAccNo,
+BankName,
+BankAccNo,
+PANNo,
+PolicyName,
+FinPrintId,
+WorkingStatus,
+ReportingEmpName,
+BankAccName,
+EmpMachineId ,
+EmpSalaryId ,
+EmpSalary ,
+AadharCardNo ,
+OnlineStatus ,
+DocDetails,
+EmpPhotos,
+IsCheck,
+Education,
+UAN
+          
+)
+values(
+@InitialId,
+@ModuleId,
+@BranchId,
+@DepartmentId,
+@DesignationId,
+@EmployeeCode,
+@FirstName,
+@MiddleName,
+@LastName,
+@Gender,
+@MobileNo,
+@EmailId,
+@DatOfBirth,
+@AnneversaryDate,
+@Address,
+@DesireLevel,
+@Category,
+@Employeephoto,
+@EmpDigitalSign,
+@UserName,
+getdate(),
+0,
+@tmpCollCenterId,
+@tmpDoctorId,
+@FatherName ,
+@Age ,
+@AgeYMD,
+--@cDoctorId
+@BloodGroup ,
+@Nationality ,
+@State ,
+@City,
+@Village ,
+@MaritalStatus ,
+@Passport ,
+@Driving ,
+@CorreAddress ,
+@CorresMo ,
+@DateOfJoining ,
+@EmployeeType ,
+@ShiftName ,
+@DOJPF,
+@ESICAccNo,
+@PFAccNo,
+@BankName,
+@BankAccNo ,
+@PANNo ,
+@PolicyName ,
+@FinPrintId ,
+@WorkingStatus ,
+@ReportingEmpName ,
+@BankAccName ,
+@EmpMachineId ,
+@EmpSalaryId ,
+@EmpSalary  ,
+@AadharCardNo,
+@OnlineStatus ,
+@DocDetails, 
+@EmpPhotos,
+1,
+@Education,
+@UAN
+)
+
+end
+---------------------------------
+if @Flag = 'UpdateEmployee'
+begin
+
+declare @tmpCollCenterIdu int = null
+if @CollCenterId != 0
+begin
+set @tmpCollCenterIdu =@CollCenterId
+end
+
+declare @tmpDoctorIdu int=null
+if @DoctorId !=0
+begin
+set @tmpDoctorIdu=@DoctorId
+end
+
+if @BitImgPhoto =  1 and @BitImgSign = 1
+begin 
+update tbl_Org_AddEmployeeMaster
+set
+InitialId=@InitialId,
+ModuleId=@ModuleId,
+BranchId=@BranchId,
+DepartmentId=@DepartmentId,
+DesignationId=@DesignationId,
+EmployeeCode=@EmployeeCode,
+FirstName=@FirstName,
+MiddleName=@MiddleName,
+LastName=@LastName,
+Gender=@Gender,
+MobileNo=@MobileNo,
+EmailId=@EmailId,
+DatOfBirth=@DatOfBirth,
+AnneversaryDate=@AnneversaryDate,
+Address=@Address,
+DesireLevel=@DesireLevel,
+Category=@Category,
+Employeephoto=@Employeephoto,
+EmpDigitalSign=@EmpDigitalSign,
+ModifyReason=@ModifyReason,
+ModifyBy=@UserName,
+ModifyDate= GETDATE(),
+CollCenterId = @tmpCollCenterIdu,
+DoctorId=@tmpDoctorIdu,
+OrgFatherName=@FatherName,
+OrgAge=@Age ,
+AgeYMD=@AgeYMD,
+BloodGroup =@BloodGroup,
+Nationality=@Nationality ,
+State=@State ,
+City=@City ,
+Village=@Village ,
+MaritalStatus=@MaritalStatus ,
+Passport=@Passport ,
+Driving=@Driving ,
+CorreAddress=@CorreAddress ,
+CorresMo=@CorresMo ,
+DateOfJoining=@DateOfJoining ,
+EmployeeType=@EmployeeType ,
+ShiftName=@ShiftName,
+DOJPF=@DOJPF,
+ESICAccNo=@ESICAccNo,
+PFAccNo=@PFAccNo,
+BankName=@BankName,
+BankAccNo=@BankAccNo,
+PANNo=@PANNo,
+PolicyName=@PolicyName,
+FinPrintId=@FinPrintId,
+WorkingStatus=@WorkingStatus,
+ReportingEmpName=@ReportingEmpName,
+BankAccName=@BankAccName  ,
+EmpMachineId=@EmpMachineId,
+EmpSalaryId=@EmpSalaryId,
+EmpSalary=@EmpSalary,
+AadharCardNo =@AadharCardNo ,
+OnlineStatus =@OnlineStatus ,
+DocDetails=@DocDetails,
+EmpPhotos=@EmpPhotos,
+--Shobhit
+Education=@Education,
+UAN=@UAN
+--shobhit
+where EmployeeId=@EmployeeId
+end
+if @BitImgPhoto =  1 and @BitImgSign = 0
+begin 
+update tbl_Org_AddEmployeeMaster
+set
+InitialId=@InitialId,
+ModuleId=@ModuleId,
+BranchId=@BranchId,
+DepartmentId=@DepartmentId,
+DesignationId=@DesignationId,
+EmployeeCode=@EmployeeCode,
+FirstName=@FirstName,
+MiddleName=@MiddleName,
+LastName=@LastName,
+Gender=@Gender,
+MobileNo=@MobileNo,
+EmailId=@EmailId,
+DatOfBirth=@DatOfBirth,
+AnneversaryDate=@AnneversaryDate,
+Address=@Address,
+DesireLevel=@DesireLevel,
+Category=@Category,
+Employeephoto=@Employeephoto,
+--EmpDigitalSign=@EmpDigitalSign,
+ModifyReason=@ModifyReason,
+ModifyBy=@UserName,
+ModifyDate= GETDATE(),
+CollCenterId = @tmpCollCenterIdu,
+DoctorId=@tmpDoctorIdu,
+OrgFatherName=@FatherName,
+OrgAge=@Age ,
+AgeYMD=@AgeYMD,
+BloodGroup =@BloodGroup,
+Nationality=@Nationality ,
+State=@State ,
+City=@City ,
+Village=@Village ,
+MaritalStatus=@MaritalStatus ,
+Passport=@Passport ,
+Driving=@Driving ,
+CorreAddress=@CorreAddress ,
+CorresMo=@CorresMo ,
+DateOfJoining=@DateOfJoining ,
+EmployeeType=@EmployeeType ,
+ShiftName=@ShiftName,
+DOJPF=@DOJPF,
+ESICAccNo=@ESICAccNo,
+PFAccNo=@PFAccNo,
+BankName=@BankName,
+BankAccNo=@BankAccNo,
+PANNo=@PANNo,
+PolicyName=@PolicyName,
+FinPrintId=@FinPrintId,
+WorkingStatus=@WorkingStatus,
+ReportingEmpName=@ReportingEmpName,
+BankAccName=@BankAccName ,
+EmpMachineId=@EmpMachineId,
+EmpSalaryId=@EmpSalaryId,
+EmpSalary=@EmpSalary,
+AadharCardNo =@AadharCardNo ,
+OnlineStatus =@OnlineStatus ,
+DocDetails=@DocDetails,
+EmpPhotos=@EmpPhotos,
+--Shobhit
+Education=@Education,
+UAN=@UAN
+--shobhit
+where EmployeeId=@EmployeeId
+end
+if @BitImgPhoto =  0 and @BitImgSign = 1
+begin 
+update tbl_Org_AddEmployeeMaster
+set
+InitialId=@InitialId,
+ModuleId=@ModuleId,
+BranchId=@BranchId,
+DepartmentId=@DepartmentId,
+DesignationId=@DesignationId,
+EmployeeCode=@EmployeeCode,
+FirstName=@FirstName,
+MiddleName=@MiddleName,
+LastName=@LastName,
+Gender=@Gender,
+MobileNo=@MobileNo,
+EmailId=@EmailId,
+DatOfBirth=@DatOfBirth,
+AnneversaryDate=@AnneversaryDate,
+Address=@Address,
+DesireLevel=@DesireLevel,
+Category=@Category,
+--Employeephoto=@Employeephoto,
+EmpDigitalSign=@EmpDigitalSign,
+ModifyReason=@ModifyReason,
+ModifyBy=@UserName,
+ModifyDate= GETDATE(),
+CollCenterId = @tmpCollCenterIdu,
+DoctorId=@tmpDoctorIdu,
+OrgFatherName=@FatherName,
+OrgAge=@Age ,
+AgeYMD=@AgeYMD,
+BloodGroup =@BloodGroup,
+Nationality=@Nationality ,
+State=@State ,
+City=@City ,
+Village=@Village ,
+MaritalStatus=@MaritalStatus ,
+Passport=@Passport ,
+Driving=@Driving ,
+CorreAddress=@CorreAddress ,
+CorresMo=@CorresMo ,
+DateOfJoining=@DateOfJoining ,
+EmployeeType=@EmployeeType ,
+ShiftName=@ShiftName,
+DOJPF=@DOJPF,
+ESICAccNo=@ESICAccNo,
+PFAccNo=@PFAccNo,
+BankName=@BankName,
+BankAccNo=@BankAccNo,
+PANNo=@PANNo,
+PolicyName=@PolicyName,
+FinPrintId=@FinPrintId,
+WorkingStatus=@WorkingStatus,
+ReportingEmpName=@ReportingEmpName,
+BankAccName=@BankAccName ,
+EmpMachineId=@EmpMachineId,
+EmpSalaryId=@EmpSalaryId,
+EmpSalary=@EmpSalary,
+AadharCardNo =@AadharCardNo ,
+OnlineStatus =@OnlineStatus ,
+DocDetails=@DocDetails,
+--EmpPhotos=@EmpPhotos
+--Shobhit
+Education=@Education,
+UAN=@UAN
+--shobhit
+where EmployeeId=@EmployeeId
+end
+if @BitImgPhoto =  0 and @BitImgSign = 0
+begin 
+update tbl_Org_AddEmployeeMaster
+set
+InitialId=@InitialId,
+ModuleId=@ModuleId,
+BranchId=@BranchId,
+DepartmentId=@DepartmentId,
+DesignationId=@DesignationId,
+EmployeeCode=@EmployeeCode,
+FirstName=@FirstName,
+MiddleName=@MiddleName,
+LastName=@LastName,
+Gender=@Gender,
+MobileNo=@MobileNo,
+EmailId=@EmailId,
+DatOfBirth=@DatOfBirth,
+AnneversaryDate=@AnneversaryDate,
+Address=@Address,
+DesireLevel=@DesireLevel,
+Category=@Category,
+--Employeephoto=@Employeephoto,
+--EmpDigitalSign=@EmpDigitalSign,
+ModifyReason=@ModifyReason,
+ModifyBy=@UserName,
+ModifyDate= GETDATE(),
+CollCenterId = @tmpCollCenterIdu,
+DoctorId=@tmpDoctorIdu,
+OrgFatherName=@FatherName,
+OrgAge=@Age ,
+AgeYMD=@AgeYMD,
+BloodGroup =@BloodGroup,
+Nationality=@Nationality ,
+State=@State ,
+City=@City ,
+Village=@Village ,
+MaritalStatus=@MaritalStatus ,
+Passport=@Passport ,
+Driving=@Driving ,
+CorreAddress=@CorreAddress ,
+CorresMo=@CorresMo ,
+DateOfJoining=@DateOfJoining ,
+EmployeeType=@EmployeeType ,
+ShiftName=@ShiftName,
+DOJPF=@DOJPF,
+ESICAccNo=@ESICAccNo,
+PFAccNo=@PFAccNo,
+BankName=@BankName,
+BankAccNo=@BankAccNo,
+PANNo=@PANNo,
+PolicyName=@PolicyName,
+FinPrintId=@FinPrintId,
+WorkingStatus=@WorkingStatus,
+ReportingEmpName=@ReportingEmpName,
+BankAccName=@BankAccName,
+EmpMachineId=@EmpMachineId,
+EmpSalaryId=@EmpSalaryId,
+EmpSalary=@EmpSalary ,
+AadharCardNo =@AadharCardNo ,
+OnlineStatus =@OnlineStatus ,
+DocDetails=@DocDetails,
+--Shobhit
+Education=@Education,
+UAN=@UAN
+--shobhit
+--EmpPhotos=@EmpPhotos
+where EmployeeId=@EmployeeId
+end
+else
+begin 
+update tbl_Org_AddEmployeeMaster
+set
+InitialId=@InitialId,
+ModuleId=@ModuleId,
+BranchId=@BranchId,
+DepartmentId=@DepartmentId,
+DesignationId=@DesignationId,
+EmployeeCode=@EmployeeCode,
+FirstName=@FirstName,
+MiddleName=@MiddleName,
+LastName=@LastName,
+Gender=@Gender,
+MobileNo=@MobileNo,
+EmailId=@EmailId,
+DatOfBirth=@DatOfBirth,
+AnneversaryDate=@AnneversaryDate,
+Address=@Address,
+DesireLevel=@DesireLevel,
+Category=@Category,
+--Employeephoto=@Employeephoto,
+EmpDigitalSign=@EmpDigitalSign,
+ModifyReason=@ModifyReason,
+ModifyBy=@UserName,
+ModifyDate= GETDATE(),
+CollCenterId = @tmpCollCenterIdu,
+DoctorId=@tmpDoctorIdu,
+OrgFatherName=@FatherName,
+OrgAge=@Age ,
+AgeYMD=@AgeYMD,
+BloodGroup =@BloodGroup,
+Nationality=@Nationality ,
+State=@State ,
+City=@City ,
+Village=@Village ,
+MaritalStatus=@MaritalStatus ,
+Passport=@Passport ,
+Driving=@Driving ,
+CorreAddress=@CorreAddress ,
+CorresMo=@CorresMo ,
+DateOfJoining=@DateOfJoining ,
+EmployeeType=@EmployeeType ,
+ShiftName=@ShiftName,
+DOJPF=@DOJPF,
+ESICAccNo=@ESICAccNo,
+PFAccNo=@PFAccNo,
+BankName=@BankName,
+BankAccNo=@BankAccNo,
+PANNo=@PANNo,
+PolicyName=@PolicyName,
+FinPrintId=@FinPrintId,
+WorkingStatus=@WorkingStatus,
+ReportingEmpName=@ReportingEmpName,
+BankAccName=@BankAccName,
+EmpMachineId=@EmpMachineId,
+EmpSalaryId=@EmpSalaryId,
+EmpSalary=@EmpSalary ,
+AadharCardNo =@AadharCardNo ,
+OnlineStatus =@OnlineStatus ,
+DocDetails=@DocDetails,
+--Shobhit
+Education=@Education,
+UAN=@UAN,
+--shobhit
+EmpPhotos=@EmpPhotos
+where EmployeeId=@EmployeeId
+end
+
+
+
+update tbl_Org_UMCreateUser set ModuleId=@ModuleId where EmployeeId=@EmployeeId
+
+update tbl_Org_DepartmentLinking set ModuleId=@ModuleId,
+Level=@DesireLevel
+where EmployeeId=@EmployeeId
+
+end
+
+-------This flag is used to Delete employee------
+
+if @Flag='DeleteEmployee'
+begin
+if exists(select 1 from tbl_Org_AutoEmailRefDocSettings where EmployeeID=@EmployeeId and IsDeleted=0 and IsKey='D')
+begin
+return 
+end
+if exists(select 1 from tbl_Org_AutoEmailRefDocSettings where EmployeeID=@EmployeeId and IsDeleted=0 and IsKey='C')
+begin
+return 
+end
+if exists(select 1 from tbl_Org_AutoEmailRefDocSettings where EmployeeID=@EmployeeId and IsDeleted=0 and IsKey='R')
+begin
+return 
+end
+
+if exists(select 1 from tbl_Org_AutoEmailRefDocSettings where EmployeeID=@EmployeeId and IsDeleted=0 and IsKey='O')
+begin
+return 
+end
+if exists(select 1 from tbl_Org_UMCreateUser where EmployeeID=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+
+if exists(select 1 from tbl_Inv_RequestItemParent where EmployeeId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+if exists(select 1 from tbl_Phr_IssueVoucherParent where EmployeeNameId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+if exists(select 1 from tbl_Org_DepartmentLinking where EmployeeId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+
+if exists(select 1 from tbl_Phr_IssueVoucherParent where EmployeeNameId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+if exists(select 1 from tbl_Hims_DoctorScheduleChild where DoctorId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+
+if exists(select 1 from tbl_Hims_SetPatAppointment where DoctorId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+
+if exists(select 1 from tbl_Hims_SetPatAppointment where RefDoctorId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+
+
+if exists(select 1 from tbl_NrsEmr_AntenatalCareVisit where Physician=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+
+if exists(select 1 from tbl_NrsEmr_DeliverySheet where Delivered=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+if exists(select 1 from tbl_NrsEmr_ObstericHistory where Consultant=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+if exists(select 1 from tbl_NrsEmr_ObstericHistory where ReferedBy=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+if exists(select 1 from tbl_Doc_SeeNTreatRegistrationForm where CliniciansNameAndSignature=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+
+
+
+DECLARE @temp VARCHAR(MAX)
+SELECT @temp = COALESCE(@temp+', ' ,'') + ConsultantDoctorId
+FROM tbl_Hims_OPDRegistration where  IsDeleted=0
+select @temp=dbo.DistinctList(@temp,',')
+if exists((SELECT 1 from dbo.SplitString(@temp,',') as int where Item=@EmployeeId))
+begin
+return 
+end
+
+if exists(select 1 from tbl_Hims_OPDRegistration where RefDoctorId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+if exists(select 1 from tbl_Hims_IPDRegistration where RefDoctorId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+
+if exists(select 1 from tbl_Hims_OTSchedule where SurgeonNameId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+
+if exists(select 1 from tbl_Hims_BookAppointment where OTBoyId=@EmployeeId and IsDeleted=0)
+begin
+return 
+end
+delete from tbl_Org_AddEmployeeMaster where EmployeeId=@EmployeeId
+end
+-------This flag is used to select employee------
+if @Flag='CheckEmpIsExist'
+begin
+  if @EmployeeId is not null
+  begin  
+select count(*) from tbl_Org_AddEmployeeMaster
+where EmployeeCode=@EmployeeCode and IsDeleted=0 and EmployeeId!=@EmployeeId
+  end
+  else
+  begin
+select count(*) from tbl_Org_AddEmployeeMaster
+where EmployeeCode=@EmployeeCode and IsDeleted=0
+end
+end
+
+-------This flag is used to select Collection Center ID Name------
+if @Flag='GetCenterIDName'
+begin
+if @BranchId is null 
+begin
+select * from tbl_Org_CollCenterMaster where IsDeleted = 0
+end
+else
+begin
+select * from tbl_Org_CollCenterMaster where BranchId=@BranchId and IsDeleted = 0
+end
+end
+if @flag='GetBindSuppplier'
+begin
+select  SupId,SupName  from tbl_Inv_SupplierMaster
+end
+-------This flag is used to select employee ID Name------
+if @Flag='GetEmployeeIDName'
+
+
+begin
+
+declare @sqlQuery nvarchar(300)=null
+
+
+if @ModuleId is not null
+begin
+set @sqlQuery = 'ModuleId=' + CONVERT(varchar, @ModuleId)
+end
+
+if @BranchId is not null
+begin
+if @sqlQuery is null
+begin
+set @sqlQuery = ' BranchId = ' + CONVERT(varchar,@BranchId)
+end
+else
+begin
+set @sqlQuery = @sqlQuery + ' and BranchId = ' + CONVERT(varchar,@BranchId)
+end
+end
+
+if @DepartmentId is not null
+begin
+if @sqlQuery is null
+begin
+set @sqlQuery = ' DepartmentId = ' +CONVERT(varchar,@DepartmentId)
+end
+else
+begin
+set @sqlQuery = @sqlQuery + ' and DepartmentId = ' + CONVERT(varchar,@DepartmentId)
+end
+end
+
+
+if @DesignationId is not null
+begin
+if @sqlQuery is null
+begin
+set @sqlQuery = ' DesignationId = ' + CONVERT(varchar,@DesignationId)
+end
+else
+begin
+set @sqlQuery = @sqlQuery + ' and DepartmentId = ' + CONVERT(varchar,@DesignationId)
+end
+end
+
+if @DesireLevel is not null
+begin
+if @sqlQuery is null
+begin
+set @sqlQuery = ' DesireLevel = ' + @DesireLevel
+end
+else
+begin
+set @sqlQuery = @sqlQuery + ' and DesireLevel = ' +  @DesireLevel
+end
+end
+
+if @sqlQuery is null
+begin
+select am.EmployeeId, (im.InitialName + ' '+am.FirstName+' '+am.LastName) as EmployeeName  from tbl_Org_AddEmployeeMaster am 
+inner join tbl_Org_InitialMaster im on im.InitialId=am.InitialId
+where am.IsDeleted=0
+end
+else
+begin
+declare @sqlQuerynew nvarchar(300)=null
+ declare @SqlQueryFinal nvarchar(max)=null
+
+ set @sqlQuerynew = ' select am.EmployeeId, (im.InitialName + '' '' + am.FirstName + '' '' + am.LastName) as EmployeeName from tbl_Org_AddEmployeeMaster am 
+ inner join tbl_Org_InitialMaster im on im.InitialId=am.InitialId 
+ where am.IsDeleted=0 and '
+ set @SqlQueryFinal = @sqlQuerynew + @sqlQuery
+ --select @SqlQueryFinal
+ execute sp_executesql @SqlQueryFinal
+
+end
+end
+if @Flag='GetEmployeeIdSingle'
+begin
+
+if @sqlcreateUserQuery is null
+begin
+select EmployeeId, FirstName + '' + LastName as EmployeeName from tbl_Org_AddEmployeeMaster where IsDeleted=0 
+end
+else
+begin
+declare @tmpstoreResult nvarchar(max)=null
+declare @SqlQueryResult nvarchar(max)=null
+set @tmpstoreResult = ' select EmployeeId,im.InitialName+'' ''+ FirstName + '' '' + LastName as EmployeeName from tbl_Org_AddEmployeeMaster am 
+inner join tbl_Org_InitialMaster im on im.InitialId=am.InitialId where am.IsDeleted=0  '
+set @SqlQueryResult = @tmpstoreResult + @sqlcreateUserQuery
+execute sp_executesql @SqlQueryResult
+
+end
+end
+if @Flag='GetEmployeefillgrd'
+begin
+select
+toe.EmployeeId, 
+initial.InitialName+' '+toe.FirstName+' '+toe.LastName as EmployeeName,
+toe.MiddleName, toe.LastName,
+toe.InitialId, toi.InitialName,
+toe.ModuleId, tom.ModuleName,
+toe.BranchId, tob.BranchName,
+toe.DepartmentId, tod.DepartmentName,
+toe.DesignationId, tods.DesignationName,
+toe.EmployeeCode, toe.FirstName,
+toe.Gender, toc.Name,
+toe.MobileNo, toe.EmailId,
+(SELECT CONVERT(nvarchar(10), toe.DatOfBirth, 103)) as DatOfBirth, 
+(SELECT CONVERT(nvarchar(10), toe.AnneversaryDate, 103)) as AnneversaryDate, 
+toe.Address, toe.ModifyReason,
+toe.DesireLevel,
+toe.Category as OriginalCategory,
+(case  when toe.Category in ('Staff' ,'Referral') then toe.Category when toe.Category='Clinical Staff'  
+then  toe.Category +' - '+(select Name from tbl_AllModuleChild where ChildId=toe.DoctorId and IsDeleted=0)
+when toe.Category='Collection Center' then toe.Category+' - '+toccm.CenterName end)
+ as Category,
+toe.Employeephoto,
+toe.CollCenterId,
+toccm.CenterName,
+toe.DoctorId,
+toe.OrgFatherName,
+toe.OrgAge,
+toe.AgeYMD,
+toe.BloodGroup,
+toe.Nationality,
+toe.State,
+toe.City,
+toe.Village,
+toe.MaritalStatus,
+toe.Passport,
+toe.Driving,
+toe.CorreAddress,
+toe.CorresMo,
+toe.DateOfJoining,
+toe.EmployeeType,
+toe.ShiftName,
+toe.DOJPF,
+toe.ESICAccNo,
+toe.PFAccNo,
+toe.BankName,
+toe.BankAccNo,
+toe.PANNo,
+toe.PolicyName ,
+toe.FinPrintId,
+toe.WorkingStatus,
+toe.ReportingEmpName,
+toe.BankAccName,
+toe.EmpMachineId ,
+toe.EmpSalaryId ,
+toe.EmpSalary ,
+toe.AadharCardNo,
+(case when  toe.OnlineStatus is null or toe.OnlineStatus=1 then 1  else toe.OnlineStatus end )as OnlineStatus,
+toe.DocDetails,
+toe.EmpPhotos,
+--Shobhit
+toe.Education,
+toe.UAN
+--Shobhit
+from tbl_Org_AddEmployeeMaster toe
+inner join tbl_AllModuleChild toc on toc.ChildId = toe.Gender
+inner join tbl_Org_InitialMaster toi on toi.InitialId = toe.InitialId
+inner join tbl_Org_ModuleMaster tom on tom.ModuleId = toe.ModuleId
+inner join tbl_Org_BranchMaster tob on tob.BranchId = toe.BranchId
+inner join tbl_Org_DepartmentMaster tod on tod.DepartmentId = toe.DepartmentId
+inner join tbl_Org_DesignationMaster tods on tods.DesignationId = toe.DesignationId
+left Outer join tbl_Org_CollCenterMaster toccm on toccm.CollCenterId = toe.CollCenterId 
+inner join tbl_Org_InitialMaster initial on initial.InitialId=toe.InitialId 
+where toe.IsDeleted=0
+
+end
+if @Flag ='SearchEmployee'
+begin
+
+declare @ParQuery nvarchar(max)=null
+declare @SqlQueryEmpSearch nvarchar(max)=null
+
+
+
+set @ParQuery =
+'select  toe.EmployeeId,
+initial.InitialName+'' ''+(ltrim(rtrim(FirstName))+'' ''+ltrim(rtrim(LastName))) as EmployeeName,
+toe.MiddleName, toe.LastName,
+toe.InitialId, toi.InitialName,
+toe.ModuleId, tom.ModuleName,
+toe.BranchId, tob.BranchName,
+toe.DepartmentId, tod.DepartmentName,
+toe.DesignationId, tods.DesignationName,
+toe.EmployeeCode, toe.FirstName,
+toe.Gender, toc.Name,
+toe.MobileNo, toe.EmailId, toe.DatOfBirth, toe.AnneversaryDate, toe.Address, toe.ModifyReason, toe.DesireLevel,
+--toe.Category,
+
+toe.Category as OriginalCategory,
+(case  when toe.Category in (''Staff'' ,''Referral'') then toe.Category when toe.Category=''Clinical Staff''  
+then  toe.Category +'' - ''+(select Name from tbl_AllModuleChild where ChildId=toe.DoctorId and IsDeleted=0)
+when toe.Category=''Collection Center'' then toe.Category+'' - ''+ toccm.CenterName end)
+ as Category,
+
+toe.Employeephoto,
+toe.CollCenterId,
+toccm.CenterName,
+toe.DoctorId,
+toe.OrgFatherName,
+toe.OrgAge ,
+toe.AgeYMD,
+toe.BloodGroup ,
+toe.Nationality ,
+toe.State ,
+toe.City ,
+toe.Village ,
+toe.MaritalStatus ,
+toe.Passport ,
+toe.Driving ,
+toe.CorreAddress ,
+toe.CorresMo ,
+toe.DateOfJoining ,
+toe.EmployeeType ,
+toe.ShiftName,
+toe.DOJPF,
+toe.ESICAccNo,
+toe.PFAccNo,
+toe.BankName,
+toe.BankAccNo,
+toe.PANNo,
+toe.PolicyName,
+toe.FinPrintId,
+toe.WorkingStatus,
+toe.ReportingEmpName,
+toe.BankAccName  ,
+toe.EmpMachineId ,
+toe.EmpSalaryId ,
+toe.EmpSalary,
+  toe.AadharCardNo ,
+ (case when  toe.OnlineStatus is null or toe.OnlineStatus=1 then 1  else toe.OnlineStatus end )as OnlineStatus,
+toe.DocDetails,
+toe.EmpPhotos,
+--Shobhit
+toe.Education,
+toe.UAN
+--Shobhit
+from tbl_Org_AddEmployeeMaster toe
+inner join tbl_AllModuleChild toc on toc.ChildId = toe.Gender
+inner join tbl_Org_InitialMaster toi on toi.InitialId = toe.InitialId
+inner join tbl_Org_ModuleMaster tom on tom.ModuleId = toe.ModuleId
+inner join tbl_Org_BranchMaster tob on tob.BranchId = toe.BranchId
+inner join tbl_Org_DepartmentMaster tod on tod.DepartmentId = toe.DepartmentId
+inner join tbl_Org_DesignationMaster tods on tods.DesignationId = toe.DesignationId
+ 
+ left Outer join tbl_Org_CollCenterMaster toccm on toccm.CollCenterId = toe.CollCenterId 
+ inner join tbl_Org_InitialMaster initial on initial.InitialId=toe.InitialId 
+
+ where toe.IsDeleted=0 '
+set @SqlQueryEmpSearch = @ParQuery + @EmpSearchQuery
+execute sp_executesql @SqlQueryEmpSearch
+ 
+
+end
+
+if @Flag='RefEmpID'
+begin
+select emp.EmployeeId,tim.InitialName+' '+emp.FirstName +' '+ emp.LastName as EmployeeName from tbl_Org_AddEmployeeMaster  emp
+inner join tbl_Org_InitialMaster tim on emp.InitialId=tim.InitialId
+where emp.IsDeleted=0 and emp.Category='Referral'
+end
+
+--select * from tbl_Org_AddEmployeeMaster
+
+
+if @Flag='GetCblEmployeeIDName'
+begin
+select am.EmployeeId, (im.InitialName + ' ' +am.FirstName +' '+ am.LastName) as EmployeeName from tbl_Org_AddEmployeeMaster am
+inner join tbl_Org_InitialMaster im on im.InitialId=am.InitialId
+
+ where 
+ --am.DepartmentId=@DepartmentId 
+am.DepartmentId =(case when @DepartmentId='0' then am.DepartmentId else @DepartmentId end )
+and 
+am.DoctorId in (77,93) and am.IsDeleted=0 
+
+
+end
+if @Flag='GetddlEmpIDNameDepwise'
+begin
+select am.EmployeeId, (im.InitialName + ' ' +am.FirstName +' '+ am.LastName) as EmployeeName from tbl_Org_AddEmployeeMaster am
+inner join tbl_Org_InitialMaster im on im.InitialId=am.InitialId
+
+ where 
+
+am.DepartmentId =(case when @DepartmentId='0' then am.DepartmentId else @DepartmentId end )
+and 
+am.DoctorId=77 and am.IsDeleted=0 
+end
+
+if @Flag='GetddlEmployeeIDName'
+begin
+--select EmployeeId, FirstName +' '+ LastName as EmployeeName from tbl_Org_AddEmployeeMaster
+--where DepartmentId=@DepartmentId and IsDeleted=0
+
+-----------------Change By Jagruti-------------------------------
+select am.EmployeeId,(im.InitialName+' '+am.FirstName +' '+ am.LastName) as EmployeeName from tbl_Org_AddEmployeeMaster am
+inner join tbl_Org_InitialMaster im on im.InitialId=am.InitialId
+where am.DepartmentId=@DepartmentId and am.IsDeleted=0
+end
+if @Flag='GetEmployeeNurseIDName'
+begin
+select emp.EmployeeId, tim.InitialName+' '+emp.FirstName +' '+ emp.LastName as NurseName from tbl_Org_AddEmployeeMaster emp
+inner join tbl_Org_InitialMaster tim on emp.InitialId=tim.InitialId
+
+where emp.DoctorId=88 and emp.IsDeleted=0
+
+end
+
+
+if @Flag='GetEmployeeStaffIDName'
+begin
+select  emp.EmployeeId,tim.InitialName+' '+emp.FirstName +' '+ emp.LastName as NurseName from tbl_Org_AddEmployeeMaster emp
+inner join tbl_Org_InitialMaster tim on emp.InitialId=tim.InitialId
+ where emp.Category='Staff' and emp.IsDeleted=0
+
+end
+
+if @Flag='GetEmployeeCStaffIDName'
+begin
+select  emp.EmployeeId,tim.InitialName+' '+emp.FirstName +' '+ emp.LastName as ClinicalStaffName from tbl_Org_AddEmployeeMaster emp
+inner join tbl_Org_InitialMaster tim on emp.InitialId=tim.InitialId
+ where emp.Category='Clinical Staff' and emp.IsDeleted=0
+ and emp.BranchId=@BranchId
+--select * from tbl_Org_AddEmployeeMaster where Category='Clinical Staff'
+
+end
+
+
+
+if @Flag='GetConsultantDoctorIDName'
+begin
+select ChildId, Name from tbl_AllModuleChild where MasterId=20 and IsDeleted=0
+
+
+end
+-----------------------------------------written by Ravindra---------------------------------
+if @Flag='CheckEmailIsExist'
+begin
+select * from tbl_Org_AddEmployeeMaster
+where EmailId=@EmailId and IsDeleted=0
+end
+
+
+if @FlagStatus='EmailData'
+	begin
+	select top 1 * from tbl_MailSMS where ID=3
+	end
+
+
+-----------------------------------------written by Ravindra---------------------------------
+if @Flag='GetPassword'
+begin
+
+select distinct tolm.Username, tolm.key1 + tok2.Key2 as Password 
+from tbl_Org_Key2 tok2
+inner join tbl_Org_LoginMaster tolm on tolm.EmployeeId=tok2.EmployeeId
+inner join tbl_Org_AddEmployeeMaster emp on emp.EmployeeId=tolm.EmployeeId
+where emp.EmailId=@EmailId and tok2.IsDeleted=0 and tok2.IsActive=1
+
+end
+---------=======================================bind dropdown for salary
+----------------------Bind by kajal 20/12/2017------------------------
+if @Flag='ddlsalary'
+begin
+select distinct ChildId,Name from tbl_AllModuleChild
+ where MasterId=52
+end
+----------=============================IS Exist for Employee machine id
+if @Flag='checkEmpMachineId'
+begin
+select distinct (EmpMachineId) 
+from tbl_Org_AddEmployeeMaster where EmpMachineId=@EmpMachineId
+end
+if @Flag='GetOnlineDoctor'
+begin
+select am.EmployeeId,(im.InitialName+' '+am.FirstName +' '+ am.LastName) as EmployeeName,
+MobileNo,EmployeeCode,EmailId,(select   DocNo from tbl_Org_DepartmentLinking where EmployeeId=am.EmployeeId),am.Employeephoto
+ from tbl_Org_AddEmployeeMaster am
+inner join tbl_Org_InitialMaster im on im.InitialId=am.InitialId
+where am.IsDeleted=0 and am.OnlineStatus=0
+end
+
+end
+
+
+
